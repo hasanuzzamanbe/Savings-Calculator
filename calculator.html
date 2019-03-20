@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Calculator</title>
+</head>
+<body>
+<div id="app">
+    <div id="Cal_Main_container">
+        <div id="intro">
+            <h1>savings Goal Calculator</h1>
+            <p>The savings goal calculator is an excellent guide to help you determinehow much you need to save
+               each month in order to get to achive your objectives.
+               Symbols such as commas and dollar signs are not
+                required and many result in errors.</p>
+        </div>
+        <div id="calculationArea">
+            <div class="form-group">
+                <label for="savingsGoal">What is your savings goal?</label>
+                <input type="text" v-model="savingsGoalVal" class="form-control" id="savingsGoal" placeholder="$0.00">
+            </div>
+            <div class="form-group">
+                <label for="savingsBalance">What is your current savings ballance?</label>
+                <input type="text" v-model="savingsBalanceVal" class="form-control" id="savingsBalance"
+                       placeholder="$0.00">
+            </div>
+            <div class="form-group">
+                <label for="savingsYears">How long do you want to save for?</label>
+                <input type="text" v-model="savingsYearsVal" class="form-control" id="savingsYears"
+                       placeholder="0 Years">
+            </div>
+            <div class="form-group">
+                <label for="savingsRate">Which rate applies to your ammount?</label>
+                <select id="savingsRate" v-mode="savingsRateVal">
+                    <option value="10">10% (percent)</option>
+                    <option value="12">12% (percent)</option>
+                    <option value="15">15% (percent)</option>
+                    <option value="20">20% (percent)</option>
+                </select>
+                <hr class="Cal_inner_border">
+            </div>
+
+            <div id="calculationResults">
+                <div id="resultWeekly">
+                    <h2>Weekly saving goal</h2>
+                    <br>
+                    <h1>${{WeeklySavingResult}}</h1>
+                </div>
+                <div id="resultMonthly">
+                    <h2>Monthly saving goal</h2>
+                    <br>
+                    <h1>${{monthlySavingResult}}</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            savingsGoalVal: '',
+            savingsBalanceVal: '',
+            savingsYearsVal: '',
+            savingsRateVal: '',
+            monthlySavingResult: '0',
+            WeeklySavingResult: '0'
+        },
+        methods: {},
+        computed: {}
+    })
+</script>
+</body>
+<style>
+    #app {
+        padding: 50px;
+        background-image: linear-gradient(to right, rgba(155, 70, 70, 0.87), rgb(182, 85, 85), #cc3e3e);
+        color: white;
+    }
+
+    #calculationArea .form-group {
+        max-width: 790px;
+        text-align: right;
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+
+    #calculationResults {
+        max-width: 790px;
+    }
+
+    #intro {
+        max-width: 853px;
+        margin: 0 auto;
+    }
+    #intro h1 {
+        font-size: 44px;
+    }
+    #intro p {
+        font-size: 20px;
+        font-weight: normal;
+        line-height: 29px;
+    }
+
+    select#savingsRate {
+        min-width: 252px;
+        height: 33px;
+        background: white;
+    }
+
+    #calculationArea input {
+        border-radius: 8px;
+        min-width: 247px;
+        min-height: 26px;
+    }
+
+    div#calculationResults {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #calculationResults h1 {
+        text-align: center;
+        font-size: 54px;
+        margin-top: -23px;
+    }
+
+    div#calculationArea {
+        margin: 0 auto;
+        border: 1px solid;
+        padding: 33px;
+        border-radius: 23px;
+        max-width: 790px;
+    }
+
+    .Cal_inner_border {
+        margin-top: 33px;
+    }
+</style>
+</html>
