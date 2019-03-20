@@ -11,23 +11,24 @@
         <div id="intro">
             <h1>savings Goal Calculator</h1>
             <p>The savings goal calculator is an excellent guide to help you determinehow much you need to save
-               each month in order to get to achive your objectives.
-               Symbols such as commas and dollar signs are not
+                each month in order to get to achive your objectives.
+                Symbols such as commas and dollar signs are not
                 required and many result in errors.</p>
         </div>
         <div id="calculationArea">
             <div class="form-group">
                 <label for="savingsGoal">What is your savings goal?</label>
-                <input type="text" v-model="savingsGoalVal" class="form-control" id="savingsGoal" placeholder="$0.00">
+                <input type="number" min="0" v-model="savingsGoalVal" class="form-control" id="savingsGoal"
+                       placeholder="$0.00">
             </div>
             <div class="form-group">
                 <label for="savingsBalance">What is your current savings ballance?</label>
-                <input type="text" v-model="savingsBalanceVal" class="form-control" id="savingsBalance"
+                <input type="number" min="0" v-model="savingsBalanceVal" class="form-control" id="savingsBalance"
                        placeholder="$0.00">
             </div>
             <div class="form-group">
                 <label for="savingsYears">How long do you want to save for?</label>
-                <input type="text" v-model="savingsYearsVal" class="form-control" id="savingsYears"
+                <input type="number" min="0" v-model="savingsYearsVal" class="form-control" id="savingsYears"
                        placeholder="0 Years">
             </div>
             <div class="form-group">
@@ -45,12 +46,13 @@
                 <div id="resultWeekly">
                     <h2>Weekly saving goal</h2>
                     <br>
-                    <h1>${{WeeklySavingResult}}</h1>
+                    <!--<h1>${{cal_sav_goal_week}}</h1>-->
                 </div>
+                <hr>
                 <div id="resultMonthly">
                     <h2>Monthly saving goal</h2>
                     <br>
-                    <h1>${{monthlySavingResult}}</h1>
+                    <h1>${{cal_sav_goal_month}}</h1>
                 </div>
             </div>
 
@@ -65,18 +67,36 @@
             savingsBalanceVal: '',
             savingsYearsVal: '',
             savingsRateVal: '',
-            monthlySavingResult: '0',
-            WeeklySavingResult: '0'
+            monthlySavingTotal: 0
         },
         methods: {},
-        computed: {}
+
+        computed: {
+            cal_sav_goal_month: function () {
+                // return parseFloat(Math.round(this.monthlySavingTotal * 100) / 100).toFixed(2);
+                var goal = this.savingsGoalVal;
+                var years = this.savingsYearsVal;
+                var cur_balance = this.savingsBalanceVal;
+                var interest = 10; // interest use 10% by hardcoded
+                var tax = 5; // tax rate use 5% by hardcoded
+                var cur_savings = 0
+
+                var interest_rate = (interest / 100) * ((100 - tax) / 100);
+                cur_savings = cur_balance * Math.pow((1 + (interest_rate / 12)), years * 12);
+                this.monthlySavingTotal = (goal - cur_balance) / ((Math.pow(1 + (interest_rate / 12), years * 12) - 1) / (interest_rate / 12));
+                return parseFloat(Math.round(this.monthlySavingTotal * 100) / 100).toFixed(2);
+            },
+            cal_sav_goal_week: function () {
+                return parseFloat(Math.round((this.monthlySavingTotal / 7) * 100) / 100).toFixed(2);
+            }
+        }
     })
 </script>
 </body>
 <style>
     #app {
         padding: 50px;
-        background-image: linear-gradient(to right, rgba(155, 70, 70, 0.87), rgb(182, 85, 85), #cc3e3e);
+        background-image: linear-gradient(to right, rgba(222, 70, 70, 0.87), rgb(182, 85, 119), #bb4214);
         color: white;
     }
 
@@ -95,9 +115,11 @@
         max-width: 853px;
         margin: 0 auto;
     }
+
     #intro h1 {
         font-size: 44px;
     }
+
     #intro p {
         font-size: 20px;
         font-weight: normal;
@@ -112,18 +134,20 @@
 
     #calculationArea input {
         border-radius: 8px;
-        min-width: 247px;
+        min-width: 241px;
         min-height: 26px;
+        padding-left: 7px;
+        font-size: 15px;
     }
 
     div#calculationResults {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     #calculationResults h1 {
         text-align: center;
-        font-size: 54px;
+        font-size: 43px;
         margin-top: -23px;
     }
 
