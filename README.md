@@ -1,4 +1,3 @@
 ## Savings Calculator.
 
-
-you can calculate your monthly and weekly saving to reach the savings goal.
+This will help you to determine the amount you need to save per month and week to reach your goal. No need to worry just put the data on all fields bellow. We will provide you the result.
