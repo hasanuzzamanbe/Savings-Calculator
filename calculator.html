@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="./assets/index.css">
     <title>Calculator</title>
 </head>
 <body>
+
 <div id="app">
     <div id="Cal_Main_container">
         <div id="intro">
@@ -46,121 +48,21 @@
                 <div id="resultWeekly">
                     <h2>Weekly saving goal</h2>
                     <br>
-                    <!--<h1>${{cal_sav_goal_week}}</h1>-->
+                    <h1 v-if="!numberCheck">${{cal_sav_goal_week}}</h1>
+                    <h1 v-else>$0</h1>
                 </div>
                 <hr>
                 <div id="resultMonthly">
                     <h2>Monthly saving goal</h2>
                     <br>
-                    <h1>${{cal_sav_goal_month}}</h1>
+                    <h1 v-if="!numberCheck">${{cal_sav_goal_month}}</h1>
+                    <h1 v-else>$0</h1>
                 </div>
             </div>
-
         </div>
     </div>
+
+<script src="./assets/index.js"></script>
 </div>
-<script>
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            savingsGoalVal: '',
-            savingsBalanceVal: '',
-            savingsYearsVal: '',
-            savingsRateVal: '',
-            monthlySavingTotal: 0
-        },
-        methods: {},
-
-        computed: {
-            cal_sav_goal_month: function () {
-                // return parseFloat(Math.round(this.monthlySavingTotal * 100) / 100).toFixed(2);
-                var goal = this.savingsGoalVal;
-                var years = this.savingsYearsVal;
-                var cur_balance = this.savingsBalanceVal;
-                var interest = 10; // interest use 10% by hardcoded
-                var tax = 5; // tax rate use 5% by hardcoded
-                var cur_savings = 0
-
-                var interest_rate = (interest / 100) * ((100 - tax) / 100);
-                cur_savings = cur_balance * Math.pow((1 + (interest_rate / 12)), years * 12);
-                this.monthlySavingTotal = (goal - cur_balance) / ((Math.pow(1 + (interest_rate / 12), years * 12) - 1) / (interest_rate / 12));
-                return parseFloat(Math.round(this.monthlySavingTotal * 100) / 100).toFixed(2);
-            },
-            cal_sav_goal_week: function () {
-                return parseFloat(Math.round((this.monthlySavingTotal / 7) * 100) / 100).toFixed(2);
-            }
-        }
-    })
-</script>
 </body>
-<style>
-    #app {
-        padding: 50px;
-        background-image: linear-gradient(to right, rgba(222, 70, 70, 0.87), rgb(182, 85, 119), #bb4214);
-        color: white;
-    }
-
-    #calculationArea .form-group {
-        max-width: 790px;
-        text-align: right;
-        font-size: 21px;
-        margin-bottom: 20px;
-    }
-
-    #calculationResults {
-        max-width: 790px;
-    }
-
-    #intro {
-        max-width: 853px;
-        margin: 0 auto;
-    }
-
-    #intro h1 {
-        font-size: 44px;
-    }
-
-    #intro p {
-        font-size: 20px;
-        font-weight: normal;
-        line-height: 29px;
-    }
-
-    select#savingsRate {
-        min-width: 252px;
-        height: 33px;
-        background: white;
-    }
-
-    #calculationArea input {
-        border-radius: 8px;
-        min-width: 241px;
-        min-height: 26px;
-        padding-left: 7px;
-        font-size: 15px;
-    }
-
-    div#calculationResults {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    #calculationResults h1 {
-        text-align: center;
-        font-size: 43px;
-        margin-top: -23px;
-    }
-
-    div#calculationArea {
-        margin: 0 auto;
-        border: 1px solid;
-        padding: 33px;
-        border-radius: 23px;
-        max-width: 790px;
-    }
-
-    .Cal_inner_border {
-        margin-top: 33px;
-    }
-</style>
 </html>

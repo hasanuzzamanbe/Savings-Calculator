@@ -1,0 +1,71 @@
+#app {
+    padding: 50px;
+    background-image: linear-gradient(to right, rgba(222, 70, 70, 0.87), rgb(182, 85, 119), #bb4214);
+    color: white;
+}
+
+#calculationArea .form-group {
+    max-width: 790px;
+    text-align: right;
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+#calculationResults {
+    max-width: 790px;
+}
+
+#intro {
+    max-width: 853px;
+    margin: 0 auto;
+}
+
+#intro h1 {
+    font-size: 44px;
+}
+
+#intro p {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 29px;
+}
+
+select#savingsRate {
+    min-width: 230px;
+    height: 33px;
+    background: white;
+}
+
+#calculationArea input {
+    border-radius: 8px;
+    min-width: 218px;
+    min-height: 26px;
+    padding-left: 7px;
+    font-size: 15px;
+}
+
+div#calculationResults {
+    display: flex;
+    justify-content: space-around;
+}
+
+#calculationResults h1 {
+    text-align: center;
+    font-size: 43px;
+    margin-top: -23px;
+}
+
+div#calculationArea {
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 33px;
+    border-radius: 23px;
+    max-width: 790px;
+}
+
+.Cal_inner_border {
+    margin-top: 33px;
+}
+body {
+    margin: 0 !important;
+}
