@@ -1,7 +1,8 @@
 #app {
     padding: 50px;
-    background-image: linear-gradient(to right, rgba(222, 70, 70, 0.87), rgb(182, 85, 119), #bb4214);
-    color: white;
+    min-height: 800px;
+    background-image: url("savings.png");
+    font-family: fantasy;
 }
 
 #calculationArea .form-group {
@@ -16,7 +17,7 @@
 }
 
 #intro {
-    max-width: 853px;
+    max-width: 791px;
     margin: 0 auto;
 }
 
@@ -42,25 +43,40 @@ select#savingsRate {
     min-height: 26px;
     padding-left: 7px;
     font-size: 15px;
+    background:transparent;
 }
 
 div#calculationResults {
     display: flex;
     justify-content: space-around;
+    padding: 13px;
+}
+div#innerCalculationArea {
+    padding: 18px;
 }
 
 #calculationResults h1 {
+    font-family: none;
     text-align: center;
     font-size: 43px;
     margin-top: -23px;
 }
+@media only screen and (max-width: 600px) {
+    #calculationResults h1 {
+        font-size: 18px;
+    }
+    #calculationResults h2 {
+        font-size: 18px;
+        margin-left: 8px;
+    }
+}
 
 div#calculationArea {
     margin: 0 auto;
-    border: 1px solid;
-    padding: 33px;
-    border-radius: 23px;
+    border: 1px solid white;
+    border-radius: 38px;
     max-width: 790px;
+    transition-duration: 1s;
 }
 
 .Cal_inner_border {
@@ -68,4 +84,58 @@ div#calculationArea {
 }
 body {
     margin: 0 !important;
+}
+
+#resetButton {
+    width: 100%;
+    padding: 15px;
+    border-bottom-left-radius: 38px;
+    border-bottom-right-radius: 38px;
+    background: #00BCD4;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+#resetButton:hover {
+    box-shadow: 2px 2px 2px;
+    background: #d2473d;
+    transition-duration: 1s;
+}
+#menuButton {
+    border-bottom: 1px solid #f1eded;
+    width:50%;
+    border-top-left-radius: 38px;
+    padding: 17px;
+    background: #01c4da;
+    margin-bottom: 23px;
+    height: 17px;
+}
+#menuButton2 {
+    border-bottom: 1px solid #f1eded;
+    width:50%;
+    border-top-right-radius: 38px;
+    padding: 17px;
+    background: #01c4da;
+    margin-bottom: 23px;
+    height: 17px;
+}
+#upperButton {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+#firstHr {
+    height: 49px;
+    margin-top: 0px;
+}
+div#copyright {
+    background: #4a3b3b;
+    color: white;
+    text-align: center;
+    min-height: 32px;
+    padding-top: 14px;
+}
+div#copyright a {
+    color: white;
+    text-decoration: none;
 }
