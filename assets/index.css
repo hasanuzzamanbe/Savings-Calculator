@@ -1,8 +1,8 @@
 #app {
-    padding: 50px;
+    padding: 30px;
     min-height: 800px;
-    background-image: url("savings.png");
     font-family: fantasy;
+    background: #e0effc;
 }
 
 #calculationArea .form-group {
