@@ -1,4 +1,4 @@
-## Savings Calculator. (https://savings-calculator-vue.netlify.com/)
+## Savings Calculator. (https://savings-calculator-vue.netlify.app/)
 ### Vue.js CDN is used for this project
 
 ### How to use:
